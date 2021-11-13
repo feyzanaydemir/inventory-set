@@ -1,0 +1,97 @@
+.sign-up {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+
+.sign-up h1 {
+  margin-top: 5%;
+  font-size: calc(18px + 0.5vw);
+  font-weight: bolder;
+  text-decoration: underline;
+}
+
+.sign-up form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem 0 2rem 0;
+  border-radius: 5px;
+  font-size: calc(15px + 0.5vw);
+  background-color: white;
+}
+
+.sign-up form label {
+  width: fit-content;
+  margin-bottom: 3%;
+  font-weight: bolder;
+  color: rgb(0, 21, 138);
+}
+
+.sign-up form ul {
+  width: 100%;
+  margin-bottom: 5%;
+}
+
+.sign-up form li {
+  margin-bottom: 2%;
+}
+
+.sign-up form input {
+  display: block;
+  padding: 0.25rem 0.5rem;
+  border: solid 2px rgb(0, 21, 138);
+  border-radius: 5px;
+  margin-top: 1%;
+  font-size: calc(15px + 0.5vw);
+}
+
+.validation-error {
+  padding: 0.5rem;
+  border-radius: 5px;
+  margin-bottom: 5%;
+  font-size: calc(14px + 0.5vw);
+  font-weight: bolder;
+  color: red;
+}
+
+.sign-up form button {
+  padding: 0.25rem 0.5rem;
+  font-weight: bolder;
+  font-size: calc(15px + 0.5vw);
+  border: solid 2px rgb(0, 21, 138);
+  border-radius: 5px;
+  background-color: rgb(0, 21, 138);
+  color: white;
+  cursor: pointer;
+}
+
+.sign-up .sign-up-button {
+  margin-bottom: 10%;
+  background-color: transparent;
+  color: rgb(0, 21, 138);
+}
+
+.sign-up span {
+  margin-bottom: 5%;
+}
+
+.sign-up .invalid {
+  border-color: red;
+  background-color: rgb(255, 246, 246);
+}
+
+@media screen and (min-width: 750px) {
+  .sign-up h1 {
+    margin-top: 3rem;
+    font-size: 22px;
+  }
+
+  .sign-up form,
+  .sign-up form span,
+  .sign-up form button,
+  .sign-up form input {
+    font-size: 19px;
+  }
+}
