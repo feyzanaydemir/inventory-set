@@ -1,0 +1,103 @@
+* {
+  box-sizing: border-box;
+}
+
+#root {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 320px;
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+header {
+  position: sticky;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 2% 5%;
+  color: white;
+  background-color: rgb(0, 21, 138);
+}
+
+header a {
+  text-decoration: none;
+  color: white;
+}
+
+header h1 {
+  font-size: calc(23px + 0.5vw);
+  font-weight: bolder;
+}
+
+header div {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  font-size: calc(18px + 0.5vw);
+}
+
+header img {
+  width: 60%;
+  height: 60%;
+  max-width: 60px;
+  max-height: 60px;
+  border: solid 2px white;
+  border-radius: 50%;
+  background-color: white;
+  cursor: pointer;
+}
+
+.new-item-button,
+header button {
+  align-self: center;
+  padding: 0.25rem 0.5rem;
+  border: solid 2px rgb(0, 21, 138);
+  border-radius: 5px;
+  margin: 1rem 0;
+  font-size: calc(15px + 0.5vw);
+  font-weight: bolder;
+  color: white;
+  background-color: rgb(0, 21, 138);
+  cursor: pointer;
+}
+
+header button {
+  margin: 0;
+  background-color: white;
+  color: rgb(0, 21, 138);
+}
+
+.loading {
+  width: 100%;
+  margin-top: 10vh;
+  font-size: calc(20px + 0.5vw);
+  font-weight: bolder;
+  text-align: center;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+@media screen and (min-width: 750px) {
+  header {
+    padding: 1rem 4rem;
+  }
+
+  .new-item-button,
+  .loading,
+  header div {
+    font-size: 22px;
+  }
+
+  header button {
+    font-size: 18px;
+  }
+}
