@@ -92,7 +92,7 @@ function SignUp({ setUser }) {
           <li>Required</li>
           <li>Between 8 and 16 characters</li>
           <li>Minimum 1 lowercase letter</li>
-          <li>Minimum 1 lowercase letter</li>
+          <li>Minimum 1 uppercase letter</li>
           <li>Minimum 1 digit</li>
         </ul>
         <button type="submit" className="sign-up-button">

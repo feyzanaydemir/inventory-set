@@ -1,4 +1,4 @@
-.searchbar {
+.search-form {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -8,69 +8,77 @@
   font-size: calc(15px + 0.5vw);
 }
 
-.search-input {
+.searchbar {
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.searchbar input {
   width: 60%;
   min-width: 250px;
   max-width: 600px;
   padding: 0.25rem 0.5rem;
   border: solid 2px rgb(0, 21, 138);
   border-radius: 5px;
-  font-size: calc(16px + 0.5vw);
+  font-size: calc(15px + 0.5vw);
 }
 
-.searchbar button {
+.search-form button {
   padding: 0.25rem 0.5rem;
   border: solid 2px rgb(0, 21, 138);
   border-radius: 5px;
-  font-size: calc(15px + 0.5vw);
+  font-size: calc(13px + 0.5vw);
   font-weight: bolder;
   color: white;
   background-color: rgb(0, 21, 138);
   cursor: pointer;
 }
 
-.searchbar .filters-button {
+.search-form .filters-button {
   background-color: white;
   color: rgb(0, 21, 138);
 }
 
-.searchbar .buttons {
+.search-form .buttons {
   display: flex;
   gap: 1rem;
 }
 
 .filter-container {
+  align-self: center;
   display: flex;
   flex-wrap: wrap;
-  column-gap: 1.5rem;
-  width: 100%;
-  justify-content: center;
+  gap: 1.5rem;
 }
 
-.searchbar fieldset {
+.search-form fieldset {
   display: flex;
   max-width: fit-content;
   flex-direction: column;
   gap: 0.25rem;
 }
 
-.searchbar fieldset legend {
+.search-form fieldset legend {
   font-weight: bolder;
   margin-bottom: 5%;
 }
 
-.searchbar fieldset label {
+.search-form fieldset label {
   white-space: nowrap;
 }
 
 @media screen and (min-width: 750px) {
-  .searchbar,
-  .searchbar button,
+  .search-form,
+  .search-form button,
   .filter-container {
     font-size: 19px;
   }
 
-  .search-input {
-    font-size: 21px;
+  .searchbar input {
+    font-size: 20px;
   }
 }

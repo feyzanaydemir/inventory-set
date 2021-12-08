@@ -62,15 +62,15 @@
   font-size: calc(15px + 0.5vw);
   border: solid 2px rgb(0, 21, 138);
   border-radius: 5px;
-  background-color: rgb(0, 21, 138);
-  color: white;
+  background-color: transparent;
+  color: rgb(0, 21, 138);
   cursor: pointer;
 }
 
 .sign-up .sign-up-button {
   margin-bottom: 10%;
-  background-color: transparent;
-  color: rgb(0, 21, 138);
+  color: white;
+  background-color: rgb(0, 21, 138);
 }
 
 .sign-up span {

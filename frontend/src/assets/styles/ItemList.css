@@ -8,7 +8,7 @@
 
 .search-results h1,
 .recent-items h1 {
-  font-size: calc(20px + 0.5vw);
+  font-size: calc(18px + 0.5vw);
   font-weight: bolder;
   text-decoration: underline;
 }
@@ -28,12 +28,12 @@
   border: solid 2px rgb(0, 21, 138);
   border-radius: 5px;
   padding: 0.75rem;
-  font-size: calc(16px + 0.5vw);
+  font-size: calc(15px + 0.5vw);
   white-space: nowrap;
 }
 
 .item h2 {
-  font-size: calc(18px + 0.5vw);
+  font-size: calc(16px + 0.5vw);
   font-weight: bolder;
   color: rgb(0, 21, 138);
 }
@@ -52,7 +52,7 @@
   padding: 0.25rem 0.5rem;
   border: solid 2px rgb(0, 21, 138);
   border-radius: 5px;
-  font-size: calc(15px + 0.5vw);
+  font-size: calc(13px + 0.5vw);
   font-weight: bolder;
   color: white;
   background-color: rgb(0, 21, 138);

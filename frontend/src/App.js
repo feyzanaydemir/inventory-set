@@ -31,7 +31,7 @@ function App() {
       const res = await axios.get('/api/users');
 
       // If username in localStorage is valid
-      if (res.data.includes('Valid')) {
+      if (res.data?.includes('Valid')) {
         setUser((u) => [true, u[1]]);
 
         // If username in localStorage is non existed or invalid

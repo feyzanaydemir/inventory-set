@@ -51,7 +51,10 @@ function Home() {
         <button
           className="new-item-button"
           type="button"
-          onClick={() => setShowItem(true)}
+          onClick={() => {
+            setSelectedItem({});
+            setShowItem(true);
+          }}
         >
           + New Item
         </button>

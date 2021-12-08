@@ -57,22 +57,23 @@ function Searchbar({ filters, setSearchResults }) {
   };
 
   return (
-    <form noValidate className="searchbar" onSubmit={searchItemsCall}>
-      <input
-        type="text"
-        placeholder="Find something..."
-        ref={searchInput}
-        className="search-input"
-      ></input>
-      <div className="buttons">
-        <button
-          type="button"
-          className="filters-button"
-          onClick={() => setShowFilters(!showFilters)}
-        >
-          Filters
-        </button>
-        <button type="submit">Search</button>
+    <form noValidate className="search-form" onSubmit={searchItemsCall}>
+      <div className="searchbar">
+        <input
+          type="text"
+          placeholder="Find something..."
+          ref={searchInput}
+        ></input>
+        <div className="buttons">
+          <button
+            type="button"
+            className="filters-button"
+            onClick={() => setShowFilters(!showFilters)}
+          >
+            Filters
+          </button>
+          <button type="submit">Search</button>
+        </div>
       </div>
       <div className="filter-container">
         {showFilters ? (

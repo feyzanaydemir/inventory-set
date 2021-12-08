@@ -2,12 +2,16 @@
   box-sizing: border-box;
 }
 
+strong {
+  font-weight: bold;
+}
+
 #root {
   position: relative;
   display: flex;
   flex-direction: column;
-  min-width: 320px;
-  min-height: 100vh;
+  min-width: 250px;
+  height: min(fit-content, 100vh);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -37,8 +41,8 @@ header h1 {
 header div {
   display: flex;
   align-items: center;
-  gap: 3rem;
-  font-size: calc(18px + 0.5vw);
+  gap: min(3rem, 20px);
+  font-size: calc(16px + 0.5vw);
 }
 
 header img {
@@ -52,6 +56,10 @@ header img {
   cursor: pointer;
 }
 
+header img:hover {
+  box-shadow: 0 0 3px 3px white;
+}
+
 .new-item-button,
 header button {
   align-self: center;
@@ -59,7 +67,7 @@ header button {
   border: solid 2px rgb(0, 21, 138);
   border-radius: 5px;
   margin: 1rem 0;
-  font-size: calc(15px + 0.5vw);
+  font-size: calc(13px + 0.5vw);
   font-weight: bolder;
   color: white;
   background-color: rgb(0, 21, 138);
@@ -70,6 +78,7 @@ header button {
   margin: 0;
   background-color: white;
   color: rgb(0, 21, 138);
+  white-space: nowrap;
 }
 
 .loading {

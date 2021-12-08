@@ -20,10 +20,18 @@ function ItemList({ array, setState, setSelectedItem, setShowItem }) {
           array[1].map((elem, index) => (
             <div key={index} className="item">
               <h2>{elem.name}</h2>
-              <span>Brand: {elem.brand}</span>
-              <span>Price: ${elem.price}</span>
-              <span>Quantity: {elem.quantity}</span>
-              <span>Added at: {elem.createdAt}</span>
+              <span>
+                <strong>Brand:</strong> {elem.brand}
+              </span>
+              <span>
+                <strong>Price:</strong> ${elem.price}
+              </span>
+              <span>
+                <strong>Quantity:</strong> {elem.quantity}
+              </span>
+              <span>
+                <strong>Added at:</strong> {elem.createdAt}
+              </span>
               <div className="buttons">
                 <button
                   type="button"
@@ -32,13 +40,13 @@ function ItemList({ array, setState, setSelectedItem, setShowItem }) {
                     setShowItem(true);
                   }}
                 >
-                  Edit
+                  ✎
                 </button>
                 <button
                   type="button"
                   onClick={() => deleteItemCall(index, elem._id)}
                 >
-                  X
+                  ✖
                 </button>
               </div>
             </div>
