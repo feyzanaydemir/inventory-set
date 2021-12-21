@@ -20,7 +20,11 @@ const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error.'));
 
 // Middlewares
-app.use(cors());
+app.use(
+  cors({
+    origin: ['https://inventoryset.herokuapp.com', 'http://localhost:8080'],
+  })
+);
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(cookieParser());
