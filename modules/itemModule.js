@@ -26,14 +26,50 @@ const setFilter = async (items, type) => {
   for (let i = 0; i < filterElements.length; i++) {
     const arr =
       type === 'category'
-        ? await Item.find({ category: filterElements[i] })
-        : await Item.find({ brand: filterElements[i] });
+        ? await Item.find({ category: filterElements[i] }).lean()
+        : await Item.find({ brand: filterElements[i] }).lean();
 
     // Set category or brand name and item count
     filterElements[i] = { name: filterElements[i], count: arr.length };
   }
 
   return filterElements;
+};
+
+// Create a MongoDB search query
+const setMongoFilter = (array) => {
+  let categories = { $or: [] };
+  let brands = { $or: [] };
+  let prices = { $or: [] };
+
+  for (let i = 0; i < array.categories?.length; i++) {
+    categories.$or.push({ category: array.categories[i] });
+  }
+
+  for (let i = 0; i < array.brands?.length; i++) {
+    brands.$or.push({ brand: array.brands[i] });
+  }
+
+  for (let i = 0; i < array.prices?.length; i++) {
+    if (array.prices[i] === 'Under $25') {
+      prices.$or.push({ price: { $lte: 25 } });
+    } else if (array.prices[i] === '$25 to $50') {
+      prices.$or.push({ price: { $lte: 50, $gte: 25 } });
+    } else if (array.prices[i] === '$50 to $100') {
+      prices.$or.push({ price: { $lte: 100, $gte: 50 } });
+    } else if (array.prices[i] === '$100 to $200') {
+      prices.$or.push({ price: { $lte: 200, $gte: 100 } });
+    } else if (array.prices[i] === '$200 and above') {
+      prices.$or.push({ price: { $gte: 200 } });
+    }
+  }
+
+  // Return the query with non-empty filters
+  return [categories, brands, prices].filter((arr) => {
+    if (arr.$or.length > 0) {
+      return arr;
+    }
+  });
 };
 
 // Set prices filter
@@ -89,42 +125,6 @@ const setPriceRange = (items, range) => {
   }
 
   return arr;
-};
-
-// Create a MongoDB search query
-const setMongoFilter = (array) => {
-  let categories = { $or: [] };
-  let brands = { $or: [] };
-  let prices = { $or: [] };
-
-  for (let i = 0; i < array.categories?.length; i++) {
-    categories.$or.push({ category: array.categories[i] });
-  }
-
-  for (let i = 0; i < array.brands?.length; i++) {
-    brands.$or.push({ brand: array.brands[i] });
-  }
-
-  for (let i = 0; i < array.prices?.length; i++) {
-    if (array.prices[i] === 'Under $25') {
-      prices.$or.push({ price: { $lte: 25 } });
-    } else if (array.prices[i] === '$25 to $50') {
-      prices.$or.push({ price: { $lte: 50, $gte: 25 } });
-    } else if (array.prices[i] === '$50 to $100') {
-      prices.$or.push({ price: { $lte: 100, $gte: 50 } });
-    } else if (array.prices[i] === '$100 to $200') {
-      prices.$or.push({ price: { $lte: 200, $gte: 100 } });
-    } else if (array.prices[i] === '$200 and above') {
-      prices.$or.push({ price: { $gte: 200 } });
-    }
-  }
-
-  // Return the query with non-empty filters
-  return [categories, brands, prices].filter((arr) => {
-    if (arr.$or.length > 0) {
-      return arr;
-    }
-  });
 };
 
 module.exports = { setFilter, setMongoFilter };

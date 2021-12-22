@@ -20,8 +20,8 @@ module.exports.createUser = async (req, res) => {
       .cookie('jwt', token, { httpOnly: true, maxAge: 12 * 60 * 60 * 1000 })
       .status(201)
       .json({
-        firstname: newUser.firstname,
-        lastname: newUser.lastname,
+        id: newUser._id,
+        username: newUser.firstname + ' ' + newUser.lastname,
       });
   } catch (err) {
     res.json(Object.keys(err.errors));

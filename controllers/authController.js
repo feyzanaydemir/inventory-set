@@ -14,8 +14,8 @@ module.exports.createToken = async (req, res) => {
       .cookie('jwt', token, { httpOnly: true, maxAge: 12 * 60 * 60 * 1000 })
       .status(200)
       .json({
-        firstname: user.firstname,
-        lastname: user.lastname,
+        id: user._id,
+        username: user.firstname + ' ' + user.lastname,
       });
   } catch (err) {
     res.status(400).json(err.message);
