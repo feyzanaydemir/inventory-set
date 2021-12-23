@@ -16,27 +16,21 @@ import './assets/styles/App.css';
 
 function App() {
   const [isFetching, setIsFetching] = useState(false);
-  const [user, setUser] = useState([
-    false,
-    localStorage.getItem('IMusername')
-      ? localStorage.getItem('IMusername')
-      : '',
-  ]);
+  const [user, setUser] = useState({
+    exists: false,
+    data: JSON.parse(localStorage.getItem('IS-user')) || {},
+  });
 
   useEffect(() => {
-    // Check if there is a valid user signed in
     const checkUser = async () => {
       setIsFetching(true);
 
       const res = await axios.get('/api/users');
 
-      // If username in localStorage is valid
-      if (res.data?.includes('Valid')) {
-        setUser((u) => [true, u[1]]);
-
-        // If username in localStorage is non existed or invalid
+      if (res.data === 'Valid user') {
+        setUser({ exists: true, data: user.data });
       } else {
-        setUser((u) => [false, u[1]]);
+        setUser({ exists: false, data: user.data });
       }
 
       setIsFetching(false);
@@ -51,21 +45,21 @@ function App() {
       <Router>
         <Switch>
           <Route exact path="/">
-            {user[0] ? (
-              <Home />
+            {user.exists ? (
+              <Home user={user.data} />
             ) : !isFetching ? (
               <Redirect to="/signin" />
             ) : null}
           </Route>
           <Route exact path="/signin">
-            {!user[0] && !isFetching ? (
+            {!user.exists && !isFetching ? (
               <SignIn setUser={setUser} />
             ) : (
               <Redirect to="/" />
             )}
           </Route>
           <Route exact path="/signup">
-            {!user[0] && !isFetching ? (
+            {!user.exists && !isFetching ? (
               <SignUp setUser={setUser} />
             ) : (
               <Redirect to="/" />

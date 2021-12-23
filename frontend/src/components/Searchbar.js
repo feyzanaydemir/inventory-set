@@ -1,6 +1,7 @@
 import { useState, useRef } from 'react';
 import Filter from './Filter';
 import axios from 'axios';
+import { FilterAlt, Search } from '@mui/icons-material';
 import '../assets/styles/Searchbar.css';
 
 function Searchbar({ filters, setSearchResults }) {
@@ -19,7 +20,7 @@ function Searchbar({ filters, setSearchResults }) {
     }, []);
   };
 
-  const searchItemsCall = async (e) => {
+  const searchItems = async (e) => {
     e.preventDefault();
 
     let categories, brands, prices;
@@ -47,6 +48,7 @@ function Searchbar({ filters, setSearchResults }) {
       const res = await axios.post(
         `/api/items/search?input=${searchInput.current.value}`,
         {
+          userId: JSON.parse(localStorage.getItem('IS-user')).id,
           filters,
         }
       );
@@ -57,7 +59,7 @@ function Searchbar({ filters, setSearchResults }) {
   };
 
   return (
-    <form noValidate className="search-form" onSubmit={searchItemsCall}>
+    <form noValidate className="search-form" onSubmit={searchItems}>
       <div className="searchbar">
         <input
           type="text"
@@ -70,9 +72,13 @@ function Searchbar({ filters, setSearchResults }) {
             className="filters-button"
             onClick={() => setShowFilters(!showFilters)}
           >
+            <FilterAlt fontSize="small" />
             Filters
           </button>
-          <button type="submit">Search</button>
+          <button type="submit">
+            <Search fontSize="small" />
+            Search
+          </button>
         </div>
       </div>
       <div className="filter-container">

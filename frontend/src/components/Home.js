@@ -2,36 +2,29 @@ import { useState, useEffect } from 'react';
 import Searchbar from './Searchbar';
 import ItemList from './ItemList';
 import ItemDetails from './ItemDetails';
+import { CircularProgress } from '@mui/material';
 import axios from 'axios';
 
-function Home() {
+function Home({ user }) {
   const [filters, setFilters] = useState({});
   const [searchResults, setSearchResults] = useState([]);
   const [recentItems, setRecentItems] = useState([]);
   const [selectedItem, setSelectedItem] = useState({});
   const [showItem, setShowItem] = useState(false);
   const [isFetching, setIsFetching] = useState(false);
+  const getFilters = async () => {
+    setIsFetching(true);
+    const res = await axios.get(`/api/items/filters/${user.id}`);
+    setFilters(res.data);
+  };
+  const getRecentItems = async () => {
+    const res = await axios.get(`/api/items/recent/${user.id}`);
+    setRecentItems(res.data);
+    setIsFetching(false);
+  };
 
   useEffect(() => {
-    const getFilters = async () => {
-      setIsFetching(true);
-
-      const res = await axios.get('/api/items/filters');
-
-      setFilters(res.data);
-    };
-
     getFilters();
-  }, []);
-
-  useEffect(() => {
-    const getRecentItems = async () => {
-      const res = await axios.get('/api/items/recent');
-
-      setRecentItems(res.data);
-      setIsFetching(false);
-    };
-
     getRecentItems();
   }, []);
 
@@ -60,14 +53,12 @@ function Home() {
         </button>
         <Searchbar filters={filters} setSearchResults={setSearchResults} />
         <ItemList
-          array={['search', searchResults]}
-          setState={setSearchResults}
+          items={{ type: 'search', list: searchResults }}
           setSelectedItem={setSelectedItem}
           setShowItem={setShowItem}
         />
         <ItemList
-          array={['recent', recentItems]}
-          setState={setRecentItems}
+          items={{ type: 'recent', list: recentItems }}
           setSelectedItem={setSelectedItem}
           setShowItem={setShowItem}
         />
@@ -75,7 +66,7 @@ function Home() {
     );
   }
 
-  return <span className="loading">Loading</span>;
+  return <CircularProgress className="loading" fontSize="large" />;
 }
 
 export default Home;

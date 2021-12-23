@@ -2,11 +2,10 @@ import axios from 'axios';
 import gitHubMark from '../assets/github-mark.png';
 
 function Header({ user }) {
-  const signOutCall = async () => {
+  const signOut = async () => {
     await axios.delete('/api/auth/');
 
-    localStorage.removeItem('IMuser');
-
+    localStorage.clear();
     window.location.reload();
   };
 
@@ -16,8 +15,8 @@ function Header({ user }) {
         <h1>Inventory Set</h1>
       </a>
       <div>
-        {user[0] && user[1] ? <h2>{user[1]}</h2> : null}
-        {user[0] ? <button onClick={signOutCall}>Sign Out</button> : null}
+        {user.exists && user.data ? <h2>{user.data.username}</h2> : null}
+        {user.exists ? <button onClick={signOut}>Sign Out</button> : null}
         <a
           href="https://github.com/feyzanaydemir/inventory-set"
           target="_blank"

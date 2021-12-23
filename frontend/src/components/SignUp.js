@@ -1,10 +1,12 @@
 import axios from 'axios';
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { CircularProgress } from '@mui/material';
 import '../assets/styles/SignUp.css';
 
 function SignUp({ setUser }) {
   const history = useHistory();
+  const [isFetching, setIsFetching] = useState(false);
   const [validationErrors, setValidationErrors] = useState([
     false,
     false,
@@ -12,7 +14,8 @@ function SignUp({ setUser }) {
     false,
   ]);
 
-  const signUpCall = async (e) => {
+  const signUp = async (e) => {
+    setIsFetching(true);
     e.preventDefault();
 
     const res = await axios.post('/api/users', {
@@ -22,7 +25,9 @@ function SignUp({ setUser }) {
       password: document.querySelector('input[name="password"]').value,
     });
 
+    // If validation fails, response will be an array of errors
     if (Array.isArray(res.data)) {
+      setIsFetching(false);
       setValidationErrors([
         res.data.includes('firstname'),
         res.data.includes('lastname'),
@@ -30,12 +35,11 @@ function SignUp({ setUser }) {
         res.data.includes('password'),
       ]);
     } else {
-      setUser([true, `${res.data.firstname} ${res.data.lastname}`]);
+      const user = { id: res.data.id, username: res.data.username };
 
-      localStorage.setItem(
-        'IMusername',
-        `${res.data.firstname} ${res.data.lastname}`
-      );
+      localStorage.setItem('IS-user', JSON.stringify(user));
+      setUser({ exists: true, data: user });
+      setIsFetching(false);
 
       history.push('/');
     }
@@ -44,7 +48,7 @@ function SignUp({ setUser }) {
   return (
     <div className="sign-up">
       <h1>Sign Up</h1>
-      <form noValidate onSubmit={signUpCall}>
+      <form noValidate onSubmit={signUp}>
         <label>
           Firstname
           <input
@@ -54,8 +58,7 @@ function SignUp({ setUser }) {
           ></input>
         </label>
         <ul>
-          <li>Required</li>
-          <li>Between 2 and 10 characters</li>
+          <li>Between 2 and 12 characters</li>
         </ul>
         <label>
           Lastname
@@ -66,8 +69,7 @@ function SignUp({ setUser }) {
           ></input>
         </label>
         <ul>
-          <li>Required</li>
-          <li>Between 2 and 10 characters</li>
+          <li>Between 2 and 12 characters</li>
         </ul>
         <label>
           Email
@@ -77,9 +79,6 @@ function SignUp({ setUser }) {
             className={validationErrors[2] ? 'invalid' : 'valid'}
           ></input>
         </label>
-        <ul>
-          <li>Required</li>
-        </ul>
         <label>
           Password
           <input
@@ -89,12 +88,12 @@ function SignUp({ setUser }) {
           ></input>
         </label>
         <ul>
-          <li>Required</li>
-          <li>Between 8 and 16 characters</li>
+          <li>Minimum 8 characters</li>
           <li>Minimum 1 lowercase letter</li>
           <li>Minimum 1 uppercase letter</li>
           <li>Minimum 1 digit</li>
         </ul>
+        {isFetching ? <CircularProgress /> : null}
         <button type="submit" className="sign-up-button">
           Sign Up
         </button>

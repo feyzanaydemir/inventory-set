@@ -5,10 +5,11 @@ import '../assets/styles/ItemDetails.css';
 function ItemDetails({ categories, setShowItem, selectedItem }) {
   const [validationErrors, setValidationErrors] = useState(true);
 
-  const saveItemCall = async (e) => {
+  const saveItem = async (e) => {
     e.preventDefault();
 
     const item = {
+      userId: JSON.parse(localStorage.getItem('IS-user')).id,
       name: document.querySelector('form').name.value,
       brand: document.querySelector('form').brand.value,
       category: document.querySelector('form').category.value,
@@ -31,7 +32,7 @@ function ItemDetails({ categories, setShowItem, selectedItem }) {
   return (
     <div className="item-details">
       <h1>Item</h1>
-      <form noValidate onSubmit={saveItemCall}>
+      <form noValidate onSubmit={saveItem}>
         <label>
           Name
           <input
@@ -52,19 +53,17 @@ function ItemDetails({ categories, setShowItem, selectedItem }) {
           Category
           <h2>Select or add a category</h2>
           <div>
-            {categories?.length > 0 ? (
-              <select
-                name="category"
-                defaultValue={selectedItem ? selectedItem.category : 'default'}
-              >
-                <option value="default">---List---</option>
-                {categories.map((elem, index) => (
-                  <option key={index} value={elem.name}>
-                    {elem.name}
-                  </option>
-                ))}
-              </select>
-            ) : null}
+            <select
+              name="category"
+              defaultValue={selectedItem ? selectedItem.category : 'default'}
+            >
+              <option value="default">---List---</option>
+              {categories.map((elem, index) => (
+                <option key={index} value={elem.name}>
+                  {elem.name}
+                </option>
+              ))}
+            </select>
             <span>or</span>
             <input
               type="text"

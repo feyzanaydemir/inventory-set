@@ -1,25 +1,39 @@
 import axios from 'axios';
+import { Edit, Delete, Air } from '@mui/icons-material';
 import '../assets/styles/ItemList.css';
 
-function ItemList({ array, setState, setSelectedItem, setShowItem }) {
-  const deleteItemCall = async (index, id) => {
-    const arr = [...array[1]];
-
-    arr.splice(index, 1);
-
-    setState(arr);
-
+function ItemList({ items, setSelectedItem, setShowItem }) {
+  const deleteItem = async (id) => {
     await axios.delete(`/api/items/${id}`);
+    window.location.reload();
   };
 
   return (
-    <div className={array[0] === 'search' ? 'search-results' : 'recent-items'}>
-      <h1>{array[0] === 'search' ? 'Search Results' : 'Recent Items'}</h1>
+    <div
+      className={items.type === 'search' ? 'search-results' : 'recent-items'}
+    >
+      <h1>{items.type === 'search' ? 'Search Results' : 'Recent Items'}</h1>
       <div className="item-container">
-        {array[1]?.length > 0 ? (
-          array[1].map((elem, index) => (
+        {items.list?.length > 0 ? (
+          items.list.map((elem, index) => (
             <div key={index} className="item">
-              <h2>{elem.name}</h2>
+              <div>
+                <h2>{elem.name} </h2>
+                <div className="buttons">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setSelectedItem(elem);
+                      setShowItem(true);
+                    }}
+                  >
+                    <Edit fontSize="small" />
+                  </button>
+                  <button type="button" onClick={() => deleteItem(elem._id)}>
+                    <Delete fontSize="small" />
+                  </button>
+                </div>
+              </div>
               <span>
                 <strong>Brand:</strong> {elem.brand}
               </span>
@@ -32,27 +46,10 @@ function ItemList({ array, setState, setSelectedItem, setShowItem }) {
               <span>
                 <strong>Added at:</strong> {elem.createdAt}
               </span>
-              <div className="buttons">
-                <button
-                  type="button"
-                  onClick={() => {
-                    setSelectedItem(elem);
-                    setShowItem(true);
-                  }}
-                >
-                  ✎
-                </button>
-                <button
-                  type="button"
-                  onClick={() => deleteItemCall(index, elem._id)}
-                >
-                  ✖
-                </button>
-              </div>
             </div>
           ))
         ) : (
-          <div>. . .</div>
+          <Air fontSize="large" className="empty" />
         )}
       </div>
     </div>
