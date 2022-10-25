@@ -7,22 +7,36 @@
 .error p {
   font-weight: bolder;
   text-align: center;
-  margin-top: 1rem;
   color: rgb(0, 21, 138);
   cursor: default;
 }
 
 .error h1 {
-  margin-top: 10vh;
-  font-size: calc(25px + 0.5vw);
+  margin: min(10vh, 100px) 0 1rem 0;
+  font-size: calc(35px + 0.5vw);
 }
 
 .error h2 {
-  font-size: calc(20px + 0.5vw);
+  font-size: calc(18px + 0.5vw);
+  margin-bottom: 0.5rem;
 }
 
 .error p {
-  font-size: calc(16px + 0.5vw);
+  font-size: calc(14px + 0.5vw);
   font-weight: normal;
   color: black;
+}
+
+@media screen and (min-width: 750px) {
+  .error h1 {
+    font-size: 40px;
+  }
+
+  .error h2 {
+    font-size: 24px;
+  }
+
+  .error p {
+    font-size: 18px;
+  }
 }

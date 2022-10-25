@@ -1,5 +1,26 @@
 # Inventory Set
 
-Inventory Set is an inventory management system which provides stock control and item tracking. This application has a fully responsive React frontend while the backend consists of a MVC based Node.js + Express.js REST API and a MongoDB database. The user authentication and authorization implementations use JWT.
-
 ![Preview](preview.png)
+
+- ### [See Live](https://inventoryset.onrender.com)
+
+## Overview
+
+- Creating, editing and deleting items, customizable category fields for different types of products
+- Searching with keywords and filters
+- REST API back end with Node.js and Express.js, React front end using Hooks and Router
+- User authentication with JWT
+- Indexed MongoDB database integration
+
+## Usage
+
+```
+$ npm install
+$ node app.js
+```
+
+```
+$ cd frontend
+$ npm install
+$ npm start
+```

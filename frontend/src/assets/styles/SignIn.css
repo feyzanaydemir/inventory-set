@@ -3,11 +3,12 @@
   flex-direction: column;
   align-items: center;
   flex: 1;
+  cursor: default;
 }
 
 .sign-in h1 {
-  margin-top: 10%;
-  font-size: calc(18px + 0.5vw);
+  margin-top: min(10%, 3rem);
+  font-size: calc(16px + 0.5vw);
   font-weight: bolder;
   text-decoration: underline;
 }
@@ -17,8 +18,7 @@
   flex-direction: column;
   align-items: center;
   padding: 1rem 0;
-  border-radius: 5px;
-  font-size: calc(15px + 0.5vw);
+  font-size: calc(12px + 0.5vw);
   background-color: white;
 }
 
@@ -31,27 +31,24 @@
 
 .sign-in form input {
   display: block;
-  padding: 0.25rem 0.5rem;
+  padding: 0.25rem;
   border: solid 2px rgb(0, 21, 138);
-  border-radius: 5px;
-  margin-top: 1%;
-  font-size: calc(15px + 0.5vw);
+  margin-top: 2%;
+  font-size: calc(12px + 0.5vw);
 }
 
 .validation-error {
-  padding: 0.5rem;
-  border-radius: 5px;
   margin-bottom: 5%;
-  font-size: calc(14px + 0.5vw);
   font-weight: bolder;
   color: red;
 }
 
 .sign-in form button {
+  width: 100%;
   padding: 0.25rem 0.5rem;
   border: solid 2px rgb(0, 21, 138);
-  border-radius: 5px;
-  font-size: calc(15px + 0.5vw);
+  margin-bottom: 5%;
+  font-size: calc(12px + 0.5vw);
   font-weight: bolder;
   color: rgb(0, 21, 138);
   background-color: transparent;
@@ -66,18 +63,18 @@
 
 .sign-in span {
   margin-bottom: 5%;
+  font-size: calc(12px + 0.5vw);
 }
 
 @media screen and (min-width: 750px) {
   .sign-in h1 {
-    margin-top: 5rem;
-    font-size: 22px;
+    font-size: 20px;
   }
 
   .sign-in form,
   .sign-in form span,
   .sign-in form button,
   .sign-in form input {
-    font-size: 19px;
+    font-size: 15px;
   }
 }

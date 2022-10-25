@@ -7,17 +7,18 @@
 }
 
 .item-details h1 {
-  margin-top: min(40px, 3vh);
-  font-size: calc(18px + 0.5vw);
+  margin-top: min(5%, 2rem);
+  font-size: calc(16px + 0.5vw);
   font-weight: bolder;
   text-decoration: underline;
 }
 
 .item-details h2 {
   color: black;
-  margin: 0.5rem 0;
+  margin: 0.25rem 0;
   font-weight: normal;
 }
+
 .item-details label div {
   display: flex;
   align-items: center;
@@ -30,9 +31,12 @@
 }
 
 select {
-  font-size: calc(14px + 0.5vw);
-  margin-top: 0.5rem;
   max-width: 40%;
+  padding: 0.25rem;
+  border: solid 2px rgb(0, 21, 138);
+  margin-top: 0.5rem;
+  font-size: calc(12px + 0.5vw);
+  background-color: white;
 }
 
 .new-category {
@@ -44,10 +48,9 @@ select {
   display: flex;
   flex-direction: column;
   justify-content: center;
-
+  align-items: center;
   padding: 1rem 0;
-  border-radius: 5px;
-  font-size: calc(15px + 0.5vw);
+  font-size: calc(12px + 0.5vw);
   background-color: white;
 }
 
@@ -60,11 +63,10 @@ select {
 
 .item-details form input {
   display: block;
-  padding: 0.25rem 0.5rem;
+  padding: 0.25rem;
   border: solid 2px rgb(0, 21, 138);
-  border-radius: 5px;
   margin-top: 0.5rem;
-  font-size: calc(15px + 0.5vw);
+  font-size: calc(12px + 0.5vw);
 }
 
 .price {
@@ -77,10 +79,8 @@ select {
 }
 
 .validation-error {
-  padding: 0.5rem;
-  border-radius: 5px;
   margin-bottom: 5%;
-  font-size: calc(15px + 0.5vw);
+  font-size: calc(12px + 0.5vw);
   font-weight: bolder;
   text-align: center;
   color: red;
@@ -88,17 +88,14 @@ select {
 
 .item-details .buttons {
   display: flex;
-  justify-content: center;
-  width: 100%;
-  align-items: center;
-  gap: 1rem;
+  justify-content: space-between;
+  width: 80%;
 }
 
 .item-details form button {
   padding: 0.25rem 0.5rem;
   border: solid 2px rgb(0, 21, 138);
-  border-radius: 5px;
-  font-size: calc(15px + 0.5vw);
+  font-size: calc(12px + 0.5vw);
   font-weight: bolder;
   color: white;
   background-color: rgb(0, 21, 138);
@@ -117,7 +114,7 @@ select {
 
 @media screen and (min-width: 750px) {
   .item-details h1 {
-    font-size: 22px;
+    font-size: 20px;
   }
 
   .item-details form,
@@ -125,6 +122,6 @@ select {
   .item-details form button,
   .item-details form input,
   select {
-    font-size: 19px;
+    font-size: 16px;
   }
 }
