@@ -1,6 +1,13 @@
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 
+module.exports.getGuest = (req, res) => {
+  res.status(200).json({
+    email: process.env.REACT_APP_GUEST_EMAIL,
+    password: process.env.REACT_APP_GUEST_PASSWORD,
+  });
+};
+
 module.exports.createUser = async (req, res) => {
   try {
     const newUser = await User.create({

@@ -1,11 +1,15 @@
 import axios from 'axios';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { CircularProgress } from '@mui/material';
 import '../assets/styles/SignIn.css';
 
 function SignIn({ setUser }) {
   const [validationErrors, setValidationErrors] = useState(false);
+  const [guestCredentials, setGuestCredentials] = useState({
+    email: '',
+    password: '',
+  });
   const [isFetching, setIsFetching] = useState(false);
   const history = useHistory();
 
@@ -33,6 +37,15 @@ function SignIn({ setUser }) {
       setIsFetching(false);
     }
   };
+
+  useEffect(() => {
+    const getGuestCredentails = async () => {
+      const res = await axios.get('/api/users/guest');
+      setGuestCredentials(res.data);
+    };
+
+    getGuestCredentails();
+  }, []);
 
   return (
     <div className="sign-in">
@@ -64,11 +77,7 @@ function SignIn({ setUser }) {
         <button
           type="button"
           onClick={(e) =>
-            signIn(
-              e,
-              process.env.REACT_APP_GUEST_EMAIL,
-              process.env.REACT_APP_GUEST_PASSWORD
-            )
+            signIn(e, guestCredentials.email, guestCredentials.password)
           }
         >
           Sign in as a Guest
