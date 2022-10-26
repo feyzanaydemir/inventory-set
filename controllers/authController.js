@@ -3,7 +3,9 @@ const jwt = require('jsonwebtoken');
 
 module.exports.createToken = async (req, res) => {
   try {
-    const user = await User.signIn(req.body.email, req.body.password);
+    const user = req.body.isGuest
+      ? await User.signIn(process.env.GUEST_EMAIL, process.env.GUEST_PASSWORD)
+      : await User.signIn(req.body.email, req.body.password);
 
     // Create a new token
     const token = jwt.sign({ id: user._id }, process.env.SECRET, {
