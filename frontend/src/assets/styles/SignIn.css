@@ -38,6 +38,7 @@
 }
 
 .validation-error {
+  padding: 0.5rem 0;
   margin-bottom: 5%;
   font-weight: bolder;
   color: red;

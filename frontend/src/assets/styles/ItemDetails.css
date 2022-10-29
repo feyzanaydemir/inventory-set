@@ -17,6 +17,7 @@
   color: black;
   margin: 0.25rem 0;
   font-weight: normal;
+  
 }
 
 .item-details label div {
@@ -45,9 +46,10 @@ select {
 }
 
 .item-details form {
+  max-width: 80%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   padding: 1rem 0;
   font-size: calc(12px + 0.5vw);
@@ -88,8 +90,8 @@ select {
 
 .item-details .buttons {
   display: flex;
-  justify-content: space-between;
-  width: 80%;
+  justify-content: center;
+  gap: 2rem;
 }
 
 .item-details form button {
@@ -114,7 +116,7 @@ select {
 
 @media screen and (min-width: 750px) {
   .item-details h1 {
-    font-size: 20px;
+    font-size: 18px;
   }
 
   .item-details form,
