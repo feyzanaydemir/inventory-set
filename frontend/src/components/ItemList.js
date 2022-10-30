@@ -3,6 +3,11 @@ import { Edit, Delete, Air } from '@mui/icons-material';
 import '../assets/styles/ItemList.css';
 
 function ItemList({ items, setSelectedItem, setShowItem }) {
+  const username =
+    JSON.parse(localStorage.getItem('IS-user')) !== null
+      ? JSON.parse(localStorage.getItem('IS-user')).username
+      : '';
+
   const deleteItem = async (id) => {
     await axios.delete(`/api/items/${id}`);
     window.location.reload();
@@ -29,7 +34,11 @@ function ItemList({ items, setSelectedItem, setShowItem }) {
                   >
                     <Edit fontSize="small" />
                   </button>
-                  <button type="button" onClick={() => deleteItem(elem._id)}>
+                  <button
+                    type="button"
+                    onClick={() => deleteItem(elem._id)}
+                    disabled={username === 'Jane Doe'}
+                  >
                     <Delete fontSize="small" />
                   </button>
                 </div>

@@ -64,6 +64,13 @@
   padding-top: 0.25rem;
 }
 
+.search-results button:hover,
+.recent-items button:hover {
+  background-color: rgb(205, 212, 255);
+  border-color: rgb(205, 212, 255);
+  color: rgb(0, 21, 138);
+}
+
 @media screen and (min-width: 750px) {
   .search-results h1,
   .recent-items h1 {

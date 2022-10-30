@@ -38,6 +38,12 @@
   cursor: pointer;
 }
 
+.search-form button:hover {
+  background-color: rgb(205, 212, 255);
+  border-color: rgb(205, 212, 255);
+  color: rgb(0, 21, 138);
+}
+
 .search-form .filters-button {
   background-color: white;
   color: rgb(0, 21, 138);

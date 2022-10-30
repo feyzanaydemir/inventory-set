@@ -41,6 +41,13 @@ function Home({ user }) {
   if (!isFetching && !showItem) {
     return (
       <main>
+        <h3
+          style={{
+            display: user.username === 'Jane Doe' ? 'block' : 'none',
+          }}
+        >
+          * Please sign in with a real account to add and edit items. *
+        </h3>
         <button
           className="new-item-button"
           type="button"

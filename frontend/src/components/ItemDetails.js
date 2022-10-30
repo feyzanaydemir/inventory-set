@@ -4,6 +4,10 @@ import '../assets/styles/ItemDetails.css';
 
 function ItemDetails({ categories, setShowItem, selectedItem }) {
   const [validationErrors, setValidationErrors] = useState(true);
+  const username =
+    JSON.parse(localStorage.getItem('IS-user')) !== null
+      ? JSON.parse(localStorage.getItem('IS-user')).username
+      : '';
 
   const saveItem = async (e) => {
     e.preventDefault();
@@ -31,6 +35,13 @@ function ItemDetails({ categories, setShowItem, selectedItem }) {
 
   return (
     <div className="item-details">
+      <h3
+        style={{
+          display: username === 'Jane Doe' ? 'block' : 'none',
+        }}
+      >
+        * Please sign in with a real account to add and edit items. *
+      </h3>
       <h1>Item</h1>
       <form noValidate onSubmit={saveItem}>
         <label>
@@ -97,10 +108,14 @@ function ItemDetails({ categories, setShowItem, selectedItem }) {
           ></input>
         </label>
         {!validationErrors ? (
-          <span className="validation-error">Please fill out all fields</span>
+          <span className="validation-error">
+            Please fill out all fields correctly.
+          </span>
         ) : null}
         <div className="buttons">
-          <button type="submit">Save</button>
+          <button type="submit" disabled={username === 'Jane Doe'}>
+            Save
+          </button>
           <button
             type="reset"
             className="cancel-button"

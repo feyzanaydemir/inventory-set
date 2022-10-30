@@ -11,6 +11,7 @@
   font-size: calc(16px + 0.5vw);
   font-weight: bolder;
   text-decoration: underline;
+  display: none;
 }
 
 .item-details h2 {
@@ -23,6 +24,7 @@
 .item-details label div {
   display: flex;
   align-items: center;
+  justify-content: center;
   width: 100%;
 }
 
@@ -46,21 +48,23 @@ select {
 }
 
 .item-details form {
-  max-width: 80%;
+  width: 95%;
+  max-width: 250px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
-  padding: 1rem 0;
+  padding: 1.5rem 0 1rem 0;
   font-size: calc(12px + 0.5vw);
   background-color: white;
 }
 
 .item-details form label {
-  max-width: fit-content;
+  width: 80%;
   margin-bottom: 1.25rem;
   font-weight: bolder;
   color: rgb(0, 21, 138);
+  text-align: center;
 }
 
 .item-details form input {
@@ -69,15 +73,17 @@ select {
   border: solid 2px rgb(0, 21, 138);
   margin-top: 0.5rem;
   font-size: calc(12px + 0.5vw);
+  width: 100%;
 }
 
 .price {
-  width: 50%;
+  max-width: 50%;
   margin-left: 0.5rem;
 }
 
 .quantity {
-  width: 50%;
+  max-width: 50%;
+  margin: 0 25%;
 }
 
 .validation-error {
@@ -104,10 +110,22 @@ select {
   cursor: pointer;
 }
 
+
 .item-details .cancel-button {
   background-color: transparent;
   border-color: red;
   color: red;
+}
+
+.item-details form button:hover {
+  background-color: rgb(205, 212, 255);
+  border-color: rgb(205, 212, 255);
+  color: rgb(0, 21, 138);
+}
+
+.item-details .cancel-button:hover {
+  background-color: red;
+  color: white;
 }
 
 .item-details span {
