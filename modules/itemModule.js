@@ -1,7 +1,7 @@
 const Item = require('../models/Item');
 
 // Set categories, brands and prices filters
-const setFilter = async (items, type) => {
+const setFilter = async (userId, items, type) => {
   // Set prices filter
   if (type === 'prices') {
     return setPrices(items);
@@ -26,8 +26,8 @@ const setFilter = async (items, type) => {
   for (let i = 0; i < filterElements.length; i++) {
     const arr =
       type === 'category'
-        ? await Item.find({ category: filterElements[i] }).lean()
-        : await Item.find({ brand: filterElements[i] }).lean();
+        ? await Item.find({ userId, category: filterElements[i] }).lean()
+        : await Item.find({ userId, brand: filterElements[i] }).lean();
 
     // Set category or brand name and item count
     filterElements[i] = { name: filterElements[i], count: arr.length };

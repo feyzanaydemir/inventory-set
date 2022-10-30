@@ -53,9 +53,9 @@ module.exports.readItemFilters = async (req, res) => {
 
     // Find the number of items included in a specific filter
     const [categories, brands, prices] = await Promise.all([
-      setFilter(allItems, 'category'),
-      setFilter(allItems, 'brand'),
-      setFilter(allItems, 'prices'),
+      setFilter(req.params.userId, allItems, 'category'),
+      setFilter(req.params.userId, allItems, 'brand'),
+      setFilter(req.params.userId, allItems, 'prices'),
     ]);
 
     res.status(200).json({ categories, brands, prices });
@@ -104,7 +104,10 @@ module.exports.findItems = async (req, res) => {
 
       // Searchbar input is empty, only filtering search
     } else {
-      items = await Item.find({ $and: mongoFilter }).lean();
+      items = await Item.find({
+        userId: req.body.userId,
+        $and: mongoFilter,
+      }).lean();
     }
 
     res.status(200).json(items);
